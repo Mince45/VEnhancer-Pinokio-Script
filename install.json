@@ -1,40 +1,36 @@
-{
-  "run": [
+module.exports = {
+  run: [
     {
-      "method": "shell.start",
-      "params": {
-        "path": "."
+      method: "shell.run",
+      params: {
+        message: [
+          "git clone https://github.com/Vchitect/VEnhancer.git app"
+        ]
       }
     },
     {
-      "method": "shell.enter",
-      "params": {
-        "message": "git clone https://github.com/Vchitect/VEnhancer.git VEnhancer"
+      method: "shell.run",
+      params: {
+        message: "python -m venv app/env"
       }
     },
     {
-      "method": "shell.enter",
-      "params": {
-        "message": "python -m venv VEnhancer/env"
+      method: "shell.run",
+      params: {
+        venv: "app/env",
+        message: "pip install -r app/requirements.txt"
       }
     },
     {
-      "method": "shell.enter",
-      "params": {
-        "message": "{{ os.platform()==='win32' ? 'VEnhancer\\\\env\\\\Scripts\\\\activate' : 'source VEnhancer/env/bin/activate' }}"
+      method: "fs.link",
+      params: {
+        venv: "app/env"
       }
     },
     {
-      "method": "shell.enter",
-      "params": {
-        "message": "pip install -r VEnhancer/requirements.txt"
-      }
-    },
-    {
-      "method": "input",
-      "params": {
-        "title": "Установка завершена",
-        "description": "VEnhancer установлен. Нажмите «Start» для запуска."
+      method: "notify",
+      params: {
+        html: "✅ VEnhancer установлен. Перейдите на вкладку \"Start\" для запуска."
       }
     }
   ]
