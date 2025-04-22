@@ -1,0 +1,8 @@
+// start.json
+{
+  "cmd": [
+    "cd VEnhancer",
+    "source env/bin/activate || env\\Scripts\\activate",
+    "python main.py --input {{input}} --output {{output}} --scale 2 --fps 60"
+  ]
+}
