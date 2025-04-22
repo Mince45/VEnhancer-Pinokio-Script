@@ -5,9 +5,9 @@ module.exports = async (kernel) => {
       {
         method: "shell.run",
         params: {
-          venv: "env",
-          message: "python main.py --input {{input}} --output {{output}} --scale 2 --fps 60",
-          path: "app"
+          venv: "app/env",
+          path: "app",
+          message: "python main.py --input {{input}} --output {{output}} --scale 2 --fps 60"
         }
       }
     ]
