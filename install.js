@@ -18,11 +18,10 @@ module.exports = async () => ({
           "env\\Scripts\\python.exe -m pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 torchaudio==2.0.2+cu118 --index-url https://download.pytorch.org/whl/cu118 --upgrade",
           // Все остальные зависимости
           "env\\Scripts\\python.exe -m pip install -r requirements.txt",
-          // **Закрепляем Pydantic**, чтобы избежать TypeError в gradio_client.utils
-          "env\\Scripts\\python.exe -m pip install pydantic==2.10.6",
+          // убираем pydantic-core, фиксируем pydantic
+          "env\\Scripts\\python.exe -m pip install pydantic==2.10.6"
           "env\\Scripts\\python.exe -m pip install fastapi==0.112.4",
           "env\\Scripts\\python.exe -m pip install --upgrade gradio",
-          "env\\Scripts\\python.exe -m pip install pydantic-core==2.22.0 pydantic==2.10.6"
         ]
       }
     },
