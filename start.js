@@ -6,7 +6,7 @@ module.exports = async (kernel) => {
       {
         method: "shell.run",
         params: {
-          venv: "app/env",
+          venv: "env",
           path: "app",
           message: "python gradio_app.py --input \"{{input}}\" --output \"{{output}}\" --scale 2 --fps 60"
         }
