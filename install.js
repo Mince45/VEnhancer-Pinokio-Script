@@ -22,6 +22,7 @@ module.exports = async () => ({
           "env\\Scripts\\python.exe -m pip install pydantic==2.10.6",
           "env\\Scripts\\python.exe -m pip install fastapi==0.112.4",
           "env\\Scripts\\python.exe -m pip install --upgrade gradio",
+          "env\\Scripts\\python.exe -m pip install triton-windows",
         ]
       }
     },
