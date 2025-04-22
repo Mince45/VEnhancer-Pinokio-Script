@@ -1,28 +1,40 @@
-// install.js   — создаём окружение там, где Pinokio потом его ищет
-//module.exports = async () => ({
-//  run: [
-//    { method: "shell.run", params: { message: "git clone https://github.com/Vchitect/VEnhancer.git app" } },
-//    { method: "shell.run", params: { message: "python -m venv app/env" } },
-//    { method: "shell.run", params: { venv: "app/env", path: "app", message: "pip install -r requirements.txt" } },
-//    { method: "notify",    params: { html: "✅ Установка завершена. Жмите «Start»." } }
-//  ]
-//})
-
+// install.js — создаём окружение и ставим все зависимости
 module.exports = async () => ({
   run: [
+    // 1) Клонируем репозиторий в папку app
     {
       method: "shell.run",
       params: {
-        // работаем в корне app
+        message: "git clone https://github.com/Vchitect/VEnhancer.git app"
+      }
+    },
+    // 2) Создаём виртуальное окружение внутри app/env
+    {
+      method: "shell.run",
+      params: {
+        message: "python -m venv app/env"
+      }
+    },
+    // 3) Устанавливаем зависимости внутри окружения
+    {
+      method: "shell.run",
+      params: {
         path: "app",
         message: [
-          // 1) создаём venv (у вас это уже есть)
-          "..\\env\\Scripts\\python.exe -m pip install --upgrade pip",
-          // 2) базовый PyTorch как в оригинальной инструкции
-          "..\\env\\Scripts\\pip.exe install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2",
-          // 3) все остальные зависимости проекта
-          "..\\env\\Scripts\\pip.exe install -r requirements.txt"
+          // Активируем env и апгрейдим pip
+          ".\\env\\Scripts\\activate && python -m pip install --upgrade pip",
+          // Ставим PyTorch нужной версии
+          "pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2",
+          // Ставим всё остальное из requirements.txt
+          "pip install -r requirements.txt"
         ]
+      }
+    },
+    // 4) Уведомление об окончании
+    {
+      method: "notify",
+      params: {
+        html: "✅ Установка завершена. Жмите «Start»."
       }
     }
   ]
