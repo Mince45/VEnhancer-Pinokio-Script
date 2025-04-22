@@ -1,4 +1,3 @@
-// install.js
 module.exports = {
   run: [
     // 0. Уведомление, что мы стартовали

@@ -1,21 +1,13 @@
-// pinokio.js
+const path = require('path')
 module.exports = {
-  version: "1.5",
+  version: "1.0",
   title: "VEnhancer",
   description: "AI‑ускоритель видео на базе VChitect/VEnhancer",
   icon: "icon.png",
-  install: "install.js",
-  start:   "start.js",
-  update:  "update.js",
-  defaultRun: "start",
-  inputs: [
-    { name: "input",  label: "Исходное видео", type: "file"   },
-    { name: "output", label: "Папка результата", type: "folder" }
-  ],
   menu: async (kernel) => {
-    const installing = await kernel.running(__dirname, "install.js")
-    const installed  = await kernel.exists(__dirname, "app", "env")
-    const running    = await kernel.running(__dirname, "start.js")
+    let installing = await kernel.running(__dirname, "install.js")
+    let installed = await kernel.exists(__dirname, "env")
+    let running = await kernel.running(__dirname, "start.js")
     if (installing) {
       return [{ title: "Installing…", selected: true, action: "install" }]
     } else if (!installed) {
