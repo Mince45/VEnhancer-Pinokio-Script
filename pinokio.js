@@ -1,11 +1,10 @@
 module.exports = {
-  version: "1.5",
-  title: "VEnhancer",
+  name: "VEnhancer",
   description: "AI‑ускоритель видео на базе VChitect/VEnhancer",
   icon: "icon.png",
-  install: "install.js",
-  start:   "start.js",
-  update:  "update.js",
+  scriptVersion: "1.5",
+  install: "install.json",
+  start:   "start.json",
   defaultRun: "start",
   inputs: [
     {
@@ -18,21 +17,5 @@ module.exports = {
       label: "Папка для результата",
       type: "folder"
     }
-  ],
-  menu: async (kernel) => {
-    const installing = await kernel.running(__dirname, "install.js")
-    const installed  = await kernel.exists(__dirname, "app", "env")
-    const running    = await kernel.running(__dirname, "start.js")
-    if (installing) {
-      return [{ title: "Installing…", selected: true, action: "install" }]
-    } else if (!installed) {
-      return [{ title: "Install", selected: true, action: "install" }]
-    } else {
-      return [
-        { title: "Start",  selected: !running, action: "start" },
-        { title: "Stop",   selected:  running, action: "stop"  },
-        { title: "Update", selected:  false,   action: "update" },
-      ]
-    }
-  }
-}
+  ]
+};
