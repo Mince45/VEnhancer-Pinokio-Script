@@ -1,8 +1,11 @@
-// start.json
 {
-  "cmd": [
-    "cd VEnhancer",
-    "source env/bin/activate || env\\Scripts\\activate",
-    "python main.py --input {{input}} --output {{output}} --scale 2 --fps 60"
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "message": "{{os.platform() === 'win32' ? 'env\\\\Scripts\\\\activate && python main.py --input {{input}} --output {{output}} --scale 2 --fps 60' : 'source env/bin/activate && python3 main.py --input {{input}} --output {{output}} --scale 2 --fps 60'}}",
+        "path": "VEnhancer"
+      }
+    }
   ]
 }

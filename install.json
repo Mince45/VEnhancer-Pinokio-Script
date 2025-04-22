@@ -1,10 +1,38 @@
-// install.json
 {
-  "cmd": [
-    "git clone https://github.com/Vchitect/VEnhancer.git",
-    "cd VEnhancer",
-    "python -m venv env",
-    "source env/bin/activate || env\\Scripts\\activate",
-    "pip install -r requirements.txt"
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "message": "git clone https://github.com/Vchitect/VEnhancer.git"
+      }
+    },
+    {
+      "method": "shell.run",
+      "params": {
+        "message": "{{os.platform() === 'win32' ? 'python -m venv env' : 'python3 -m venv env'}}",
+        "path": "VEnhancer"
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "{{os.platform() === 'win32' ? 'env\\\\Scripts\\\\activate' : 'source env/bin/activate'}}",
+        "path": "VEnhancer"
+      }
+    },
+    {
+      "method": "shell.run",
+      "params": {
+        "message": "pip install -r requirements.txt",
+        "path": "VEnhancer"
+      }
+    },
+    {
+      "method": "input",
+      "params": {
+        "title": "Успешно установлено",
+        "description": "Нажмите «Start», чтобы запустить VEnhancer."
+      }
+    }
   ]
 }
