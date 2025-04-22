@@ -1,37 +1,40 @@
 {
   "run": [
     {
-      "method": "shell.run",
+      "method": "shell.start",
       "params": {
-        "message": "git clone https://github.com/Vchitect/VEnhancer.git"
-      }
-    },
-    {
-      "method": "shell.run",
-      "params": {
-        "message": "{{os.platform() === 'win32' ? 'python -m venv env' : 'python3 -m venv env'}}",
-        "path": "VEnhancer"
+        "path": "."
       }
     },
     {
       "method": "shell.enter",
       "params": {
-        "message": "{{os.platform() === 'win32' ? 'env\\\\Scripts\\\\activate' : 'source env/bin/activate'}}",
-        "path": "VEnhancer"
+        "message": "git clone https://github.com/Vchitect/VEnhancer.git VEnhancer"
       }
     },
     {
-      "method": "shell.run",
+      "method": "shell.enter",
       "params": {
-        "message": "pip install -r requirements.txt",
-        "path": "VEnhancer"
+        "message": "python -m venv VEnhancer/env"
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "{{ os.platform()==='win32' ? 'VEnhancer\\\\env\\\\Scripts\\\\activate' : 'source VEnhancer/env/bin/activate' }}"
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "pip install -r VEnhancer/requirements.txt"
       }
     },
     {
       "method": "input",
       "params": {
-        "title": "Успешно установлено",
-        "description": "Нажмите «Start», чтобы запустить VEnhancer."
+        "title": "Установка завершена",
+        "description": "VEnhancer установлен. Нажмите «Start» для запуска."
       }
     }
   ]

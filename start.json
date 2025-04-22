@@ -1,10 +1,15 @@
 {
   "run": [
     {
-      "method": "shell.run",
+      "method": "shell.start",
       "params": {
-        "message": "{{os.platform() === 'win32' ? 'env\\\\Scripts\\\\activate && python main.py --input {{input}} --output {{output}} --scale 2 --fps 60' : 'source env/bin/activate && python3 main.py --input {{input}} --output {{output}} --scale 2 --fps 60'}}",
         "path": "VEnhancer"
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "{{ os.platform()==='win32' ? 'env\\\\Scripts\\\\activate && python main.py --input {{input}} --output {{output}} --scale 2 --fps 60' : 'source env/bin/activate && python3 main.py --input {{input}} --output {{output}} --scale 2 --fps 60' }}"
       }
     }
   ]
