@@ -13,17 +13,19 @@ module.exports = async () => ({
       params: {
         path: "app",
         message: [
-          // 3.1) Апгрейд pip
           "env\\Scripts\\python.exe -m pip install --upgrade pip",
-          // 3.2) Ставим CUDA11.8‑колёса torch/torchvision/torchaudio
+          // Ставим GPU‑колёса PyTorch (CUDA 11.8)
           "env\\Scripts\\python.exe -m pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 torchaudio==2.0.2+cu118 --index-url https://download.pytorch.org/whl/cu118 --upgrade",
-          // 3.3) Ставим остальные библиотеки из requirements.txt
-          "env\\Scripts\\python.exe -m pip install -r requirements.txt"
+          // Все остальные зависимости
+          "env\\Scripts\\python.exe -m pip install -r requirements.txt",
+          // **Закрепляем Pydantic**, чтобы избежать TypeError в gradio_client.utils
+          "env\\Scripts\\python.exe -m pip install pydantic==2.10.6"
         ]
       }
     },
-
-    // 4) Уведомление об окончании установки
-    { method: "notify", params: { html: "✅ Установка завершена. Теперь можно нажать «Start (CLI)» или «Start (Gradio)»." } }
+    {
+      method: "notify",
+      params: { html: "✅ Установка завершена. Нажмите «Start (CLI)» или «Start (Gradio)»." }
+    }
   ]
 })

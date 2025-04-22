@@ -6,7 +6,6 @@ module.exports = async () => ({
       params: {
         path: "app",
         message: [
-          // Активируем venv и сразу вызываем через python -m pip
           "env\\Scripts\\activate && " +
           "python enhance_a_video.py " +
             "--input_path \"{{input}}\" " +

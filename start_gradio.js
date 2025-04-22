@@ -7,7 +7,8 @@ module.exports = async () => ({
       params: {
         path: "app",
         message: [
-          "env\\Scripts\\activate && python gradio_app.py"
+          // Активируем venv и запускаем Gradio с share‑ссылкой
+          "env\\Scripts\\activate && python gradio_app.py --share"
         ]
       }
     }
