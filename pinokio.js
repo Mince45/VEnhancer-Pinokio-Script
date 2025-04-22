@@ -13,7 +13,7 @@ module.exports = {
 
   menu: async (kernel) => {
     const installing = await kernel.running(__dirname, "install.js")
-    const installed  = await kernel.exists(__dirname, "env")
+    const installed  = await kernel.exists(__dirname, "app", "env")
     const running    = await kernel.running(__dirname, "start.js")
 
     if (installing) {
