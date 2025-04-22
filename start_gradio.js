@@ -1,8 +1,4 @@
-// start_gradio.js
-//
-// Запуск Gradio‑демо (gradio_app.py).
-// Процесс должен оставаться в фоне → daemon: true.
-
+// start_gradio.js — web‑UI на базе gradio_app.py
 module.exports = async () => ({
   daemon: true,
   run: [
@@ -11,13 +7,7 @@ module.exports = async () => ({
       params: {
         path: "app",
         message: [
-          // Windows
-          "{{os.platform() === 'win32' ? " +
-          "env\\\\Scripts\\\\activate && python gradio_app.py" +
-          // *nix
-          " : " +
-          "source env/bin/activate && python gradio_app.py" +
-          "}}"
+          "env\\Scripts\\activate && python gradio_app.py"
         ]
       }
     }
