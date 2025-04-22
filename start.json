@@ -1,3 +1,4 @@
+// start.js
 module.exports = async (kernel) => {
   return {
     daemon: true,
