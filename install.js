@@ -19,7 +19,7 @@ module.exports = async () => ({
           // Все остальные зависимости
           "env\\Scripts\\python.exe -m pip install -r requirements.txt",
           // убираем pydantic-core, фиксируем pydantic
-          "env\\Scripts\\python.exe -m pip install pydantic==2.10.6"
+          "env\\Scripts\\python.exe -m pip install pydantic==2.10.6",
           "env\\Scripts\\python.exe -m pip install fastapi==0.112.4",
           "env\\Scripts\\python.exe -m pip install --upgrade gradio",
         ]
