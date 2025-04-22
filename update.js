@@ -1,23 +1,25 @@
 module.exports = {
   run: [
+    // 1. Обновляем код
     {
       method: "shell.run",
       params: {
-        path: "app",
-        message: "git pull"
+        message: "cd app && git pull"
       }
     },
+    // 2. (Опционально) убеждаемся, что зависимости в порядке
     {
       method: "shell.run",
       params: {
-        venv: "app/env",
+        venv: "env",
         message: "pip install -r app/requirements.txt"
       }
     },
+    // 3. Уведомляем
     {
       method: "notify",
       params: {
-        html: "🔄 VEnhancer обновлён. Нажмите \"Start\" для перезапуска."
+        html: "🔄 VEnhancer обновлён. Запустите «Start» заново."
       }
     }
   ]

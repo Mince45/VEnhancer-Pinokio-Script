@@ -1,14 +1,13 @@
-// start.js
 module.exports = async (kernel) => {
   return {
-    daemon: true,
+    // не daemon — сразу отработает и закроется
     run: [
       {
         method: "shell.run",
         params: {
-          venv: "app/env",
-          path: "app",
-          message: "python main.py --input {{input}} --output {{output}} --scale 2 --fps 60"
+          venv: "env",
+          // запускаем главный скрипт из папки app
+          message: "python app/main.py --input {{input}} --output {{output}} --scale 2 --fps 60"
         }
       }
     ]
