@@ -1,34 +1,32 @@
+// install.js
 module.exports = async (kernel) => {
   return {
     run: [
-      // 1. Клонируем репо в папку app
       {
-        method: "shell.run",
-        params: {
-          message: "git clone https://github.com/Vchitect/VEnhancer.git app"
-        }
+        method: "notify",
+        params: { html: "🚀 Начинаем установку VEnhancer..." }
       },
-      // 2. Создаём виртуальное окружение в корне
+      // 1) Клонируем репозиторий в папку app
       {
         method: "shell.run",
-        params: {
-          message: "python -m venv env"
-        }
+        params: { message: "git clone https://github.com/Vchitect/VEnhancer.git app" }
       },
-      // 3. Устанавливаем зависимости из requirements.txt
+      // 2) Создаём виртуальную среду в app/env
+      {
+        method: "shell.run",
+        params: { message: "python -m venv app/env" }
+      },
+      // 3) Устанавливаем зависимости (включая gradio) в эту среду
       {
         method: "shell.run",
         params: {
-          venv: "env",
+          venv: "app/env",
           message: "pip install -r app/requirements.txt"
         }
       },
-      // 4. Сообщаем об успешной установке
       {
         method: "notify",
-        params: {
-          html: "✅ VEnhancer установлен. Перейдите на «Start»."
-        }
+        params: { html: "✅ Зависимости установлены, включая Gradio." }
       }
     ]
   }
